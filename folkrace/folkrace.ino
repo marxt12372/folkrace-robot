@@ -10,8 +10,6 @@
 #define MAX_FORWARD 200
 #define TURNING 125
 
-int lastTurn = 0;
-
 NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE);
 
 void setup() {
@@ -47,38 +45,19 @@ void loop() {
   
   if((distance > 0 && distance < 20) || (distance2 < 20)) //Something is in my way! Get rid of it!
   {
-    if(distance >= distance2 && lastTurn == 0) //Vasak on kaugemal
+    if(distance >= distance2) //Vasak on kaugemal
     {
       analogWrite(RF, TURNING);
       analogWrite(RB, 0);
       analogWrite(LF, 0);
       analogWrite(LB, TURNING);
-      lastTurn = 1;
     }
-    else if(distance < distance2 && lastTurn == 0) //Parem on kaugemal
+    else if(distance < distance2) //Parem on kaugemal
     {
       analogWrite(RF, 0);
       analogWrite(RB, TURNING);
       analogWrite(LF, TURNING);
       analogWrite(LB, 0);
-      lastTurn = 2;
-    }
-    else
-    {
-      if(lastTurn == 1)
-      {
-        analogWrite(RF, TURNING);
-        analogWrite(RB, 0);
-        analogWrite(LF, 0);
-        analogWrite(LB, TURNING);
-      }
-      else if(lastTurn == 2)
-      {
-        analogWrite(RF, 0);
-        analogWrite(RB, TURNING);
-        analogWrite(LF, TURNING);
-        analogWrite(LB, 0);
-      }
     }
     /*analogWrite(RB, 0);
     analogWrite(RF, TURNING);
@@ -92,6 +71,5 @@ void loop() {
     analogWrite(RB, 0);
     analogWrite(LF, MAX_FORWARD);
     analogWrite(LB, 0);
-    lastTurn = 0;
   }
 }
