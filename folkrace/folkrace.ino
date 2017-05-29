@@ -18,7 +18,7 @@ void setup() {
   pinMode(RB, OUTPUT);
   pinMode(LF, OUTPUT);
   pinMode(LB, OUTPUT);
-  pinMode(A0, INPUT);
+  pinMode(IRS, INPUT);
 }
 
 int getCMfromMV(int mv)
