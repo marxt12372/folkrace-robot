@@ -21,7 +21,7 @@ void setup() {
   pinMode(IRS, INPUT);
 }
 
-int getCMfromMV(int mv)
+int getIRSensorCM(int mv)
 {
   /*float volts = mv*0.0048828125;   // value from sensor * (5/1024) - if running 3.3.volts then change 5 to 3.3
   float distance = 65*pow(volts, -1.10);          // worked out from graph 65 = theretical distance / (1/Volts)S - luckylarry.co.uk
@@ -35,7 +35,7 @@ void loop() {
   delay(75);
   unsigned int uS = sonar.ping();
   int distance = sonar.convert_cm(uS);
-  int distance2 = getCMfromMV(analogRead(IRS));
+  int distance2 = getIRSensorCM(analogRead(IRS));
   Serial.print("Distance: ");
   Serial.print(distance);
   Serial.println("cm");
